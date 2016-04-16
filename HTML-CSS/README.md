@@ -1,8 +1,8 @@
 ### HTML & CSS Course Work
 ***
 
-This is my course work for HTML and CSS, both following along drill work as well as my own solutions to assignment.
+These are some examples of my course work for HTML and CSS, these include following along with drill work as well as coming up with my own solutions to the assignment.
 
-If you would like to see only my own solutions to software challenges, please check out my GitHub portfolio of my work with readme files detailing how I solved each one.
+To view my solutions to software challenges and projects, please visit my [portfolio](../../../) which includes readme files detailing how I solved the challenges or completed the projects.
 
 Return to course work [main page](../../../)
