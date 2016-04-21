@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+    <link rel="stylesheet" href="lightbox.css" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <!--[if lt IE 9]>
+    <script>
+        document.createElement("article");
+        document.createElement("aside");
+        document.createElement("footer");
+        document.createElement("header");
+        document.createElement("nav");
+        document.createElement("section");
+    </script>
+    <![endif]-->
+
+    <script language="JavaScript" type="text/javascript">
+
+        function rolloverMenu(showHide, menu) {
+            var linkObj = document.getElementById('mainLink');
+            var menuObj = document.getElementById(menu);
+            if (showHide == 0) {
+                menuObj.style.display = 'none';
+                linkObj.setAttribute('class', 'mainNav');
+                linkObj.setAttribute('className', 'mainNav');
+            }
+            else {
+                menuObj.style.display = 'block';
+                linkObj.setAttribute('class', 'selectedRollover');
+                linkObj.setAttribute('className', 'selectedRollover');
+            }
+        }
+   
+    lightbox.option({
+      'maxWidth': 700,
+      'maxHeight': 700
+    })
+    </script>
+
+
+</head>
+<body>
+    <header class="banner">
+        <h1>News</h1>
+        <p>Local and National News</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="archive.html">Archives</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Local News</h2>
+            <article>
+                <header>
+                    <h3>Fire fighters rescue man from building</h3>
+                    <p>(author, data)</p>
+                </header>
+                <p>This is the story text.  This is the story text.</p>
+                <p>This is the story text.  This is the story text.</p>
+            </article>
+
+            <article>
+                <header>
+                    <h3>New Library to be built</h3>
+                    <p>(author, data)</p>
+                </header>
+                <p>This is the story text.  This is the story text.</p>
+                <p>This is the story text.  This is the story text.</p>
+            </article>
+        </section>
+
+        <section>
+            <h2>National News</h2>
+            <article>
+                <header>
+                    <h3>Snow storm is making travel difficult</h3>
+                    <p>(author, data)</p>
+                </header>
+                <p>This is the story text.  This is the story text.</p>
+                <p>This is the story text.  This is the story text.</p>
+            </article>
+
+            <article>
+                <header>
+                    <h3>Thousands are without power</h3>
+                    <p>(author, data)</p>
+                </header>
+                <p>This is the story text.  This is the story text.</p>
+                <p>This is the story text.  This is the story text.</p>
+            </article>
+        </section>
+    </main>
+
+    <aside>
+        <h2>Be a news reporter</h2>
+        <p>If you see news happening - Send us a Text.</p>
+
+        <br />
+
+        <div id="container">
+            <a class="mainNav" href="#" id="mainLink" onmouseover="rolloverMenu(1, 'mainMenu');" onmouseout="rolloverMenu(0, 'mainMenu');">Menu</a>
+            <div class="rolloverMenu" id="mainMenu" style="display: none;" onmouseover="rolloverMenu(1, 'mainMenu');" onmouseout="rolloverMenu(0, 'mainMenu');">
+                <a href="HillforP2016.jpg" rel="lightbox" title="Hillary For Prison 2016">Hillary For Prison 2016</a><br />
+                <a href="CryBarry.jpg" rel="lightbox" title="Bye Bye Barry">Bye Bye Barry</a><br />
+                <a href="RepubParty.jpg" rel="lightbox" title="Vote Republican">Vote Republican</a>
+
+
+
+                <br />
+            </div>
+        </div>
+    </aside>
+
+    <footer>
+        <p>Footer Information</p>
+    </footer>
+
+    <script type="text/javascript" src="jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="lightbox.js"></script>
+</body>
+</html>
