@@ -1,0 +1,1 @@
+EXEC dbTester.dbo.Lab61SelfChecker

@@ -1,0 +1,12 @@
+BEGIN TRAN
+
+UPDATE [Grant]
+SET Amount = 1.00
+
+WAITFOR DELAY '00:01:00'
+
+ROLLBACK TRAN
+
+
+SELECT *
+FROM [Grant]

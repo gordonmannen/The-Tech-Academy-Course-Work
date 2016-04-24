@@ -1,0 +1,9 @@
+BEGIN TRAN
+
+UPDATE CurrentProducts
+SET RetailPrice = 999
+WHERE ProductID = 1
+
+WAITFOR DELAY '00:00:30'
+
+ROLLBACK TRAN
