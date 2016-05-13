@@ -164,7 +164,6 @@ namespace ConsoleApplication1
 
             // ---------- LOOPING ----------
 
-            >>>>>>LEFT OFF HERE, about 15.14 on vid<<<<<<
 
             int i = 0;
 
@@ -200,11 +199,11 @@ namespace ConsoleApplication1
             } while (!guess.Equals("15")); // How to check String equality
 
             // Puts all changes to the iterator in one place
-            for (int j = 0; j < 10; j++)
+            for (int i = 0; i < 10; i++)
             {
-                if ((j % 2) > 0)
+                if ((i % 2) > 0)
                 {
-                    Console.WriteLine(j);
+                    Console.WriteLine(i);
                 }
             }
 
@@ -215,6 +214,7 @@ namespace ConsoleApplication1
             {
                 Console.WriteLine(c);
             }
+            // note that the spaces are also considered 'characters'.
 
             // ---------- STRINGS ----------
 
@@ -239,7 +239,7 @@ namespace ConsoleApplication1
             Console.WriteLine("Strings equal " + sampString.Equals(sampString2));
 
             // Compare strings
-            Console.WriteLine("Starts with A bunch " + sampString.StartsWith("A bunch"));
+            Console.WriteLine("Starts with \"A bunch\"" + sampString.StartsWith("A bunch"));
             Console.WriteLine("Ends with words " + sampString.EndsWith("words"));
 
             // Trim white space at beginning and end or (TrimEnd / TrimStart)
@@ -254,10 +254,13 @@ namespace ConsoleApplication1
             Console.WriteLine(sampString);
 
             // Join values in array and save to string
+
             string[] names = new string[3] { "Matt", "Joe", "Paul" };
+
             Console.WriteLine("Name List " + String.Join(", ", names));
 
             // Formatting : Currency, Decimal Places, Before Decimals, Thousands Separator
+
             string fmtStr = String.Format("{0:c} {1:00.00} {2:#.00} {3:0,0}", 1.56, 15.567, .56, 1000);
 
             Console.WriteLine(fmtStr.ToString());
@@ -321,6 +324,7 @@ namespace ConsoleApplication1
 
             // Join an array into a string
             string nameStr = string.Join(", ", names);
+
             Console.WriteLine(nameStr);
 
             // Split a string into an array
@@ -339,7 +343,7 @@ namespace ConsoleApplication1
             }
 
             // Cycle and have access to indexes
-            for (int x = 0; x < multArray2.GetLength(0); x += 1)
+            for (int x = 0; x < multArray2.GetLength(0); x += 1) // reminder:  x += 1 same as x++
             {
                 for (int y = 0; y < multArray2.GetLength(1); y += 1)
                 {
@@ -389,16 +393,15 @@ namespace ConsoleApplication1
 
             // Does the List contain a value
             Console.WriteLine("5 in list " + numList3.Contains(5));
+            // If it doesn't it will return -1.
 
             // Search for a value in a string List
             List<string> strList = new List<string>(new string[] { "Tom", "Paul" });
             Console.WriteLine("Tom in list " + strList.Contains("tom", StringComparer.OrdinalIgnoreCase));
 
-            // Sort the List
+            // Sort the List (alphabetically or numerically depending upon what kind of data the List contains.
             strList.Sort();
 
         }
     }
 }
-
-// Stop Video at 45:06 (Exception Handling)
