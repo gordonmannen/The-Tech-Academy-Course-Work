@@ -80,3 +80,6 @@ namespace ExceptionHandling
 
     }
 }
+
+// Methd name is HandleUncaughtException because there is not a specific
+// catch block for the Exception type.
