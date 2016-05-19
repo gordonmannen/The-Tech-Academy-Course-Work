@@ -1,5 +1,4 @@
-﻿
-// A program that instantiates the classes from CalculatorObjectLifetime.cs
+﻿// A program that instantiates the classes from CalculatorObjectLifetime.cs
 
 using System;
 
