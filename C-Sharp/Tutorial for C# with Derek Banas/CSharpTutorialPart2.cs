@@ -3,61 +3,24 @@
 // using declares the namespaces and functions which will be used in the file.
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// ---------- EXCEPTION HANDLING ----------
-            // All the exceptions
-            // msdn.microsoft.com/en-us/library/system.systemexception.aspx#inheritanceContinued
- 
-                try
-                {
-                    Console.Write("Divide 10 by ");
-                    int num = int.Parse(Console.ReadLine());
-Console.WriteLine("10 / {0} =  {1}", num, (10/num));
- 
-                }
- 
-                // Specifically catches the divide by zero exception
-                catch (DivideByZeroException ex)
-                {
-                    Console.WriteLine("Can't divide by zero");
- 
-                    // Get additonal info on the exception
-                    Console.WriteLine(ex.GetType().Name);
-                    Console.WriteLine(ex.Message);
- 
-                    // Throw the exception to the next inline
-                    // throw ex;
- 
-                    // Throw a specific exception
-                    throw new InvalidOperationException("Operation Failed", ex);
-                }
- 
-                // Catches any other exception
-                catch (Exception ex)
-                {
-                    Console.WriteLine("An error occurred");
-                    Console.WriteLine(ex.GetType().Name);
-                    Console.WriteLine(ex.Message);
-                }
- 
-            // ---------- CLASSES & OBJECTS ----------
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleApplication3
+namespace ConsoleApplication2
 {
     class Animal
     {
+
+        // public : Access is not limited
+        // protected : Access is limited to the class methods and subclasses
+        // private : Access is limited to only this classes methods
         public double height { get; set; }
         public double weight { get; set; }
         public string sound { get; set; }
 
+        // We can either have C# create the getters and setters or create them ourselves to verify data
         public string name;
         public string Name
         {
@@ -65,145 +28,108 @@ namespace ConsoleApplication3
             set { name = value; }
         }
 
+        // Every object has a default constructor that receives no attributes
+        // The constructor initializes every object created
+        // this is used to refer to this objects specific fields since we don't know the objects given name
+
+        // The default constructor isn't created if you create any other constructor
         public Animal()
         {
             this.height = 0;
             this.weight = 0;
             this.name = "No Name";
             this.sound = "No Sound";
-            numOfAnimals++;
 
+            numOfAnimals++;
         }
 
-        public Animal(double heigh, double weight, string name, string sound)
+        // You can create custom constructors as well
+        public Animal(double height, double weight, string name, string sound)
         {
-            this.height = 0;
-            this.weight = 0;
-            this.name = "No Name";
-            this.sound = "No Sound";
+            this.height = height;
+            this.weight = weight;
+            this.name = name;
+            this.sound = sound;
+
             numOfAnimals++;
         }
 
+        // A static fields value is shared by every object of the Animal class
+        // We declare thinsg static when it doesn't make sense for our object to either have the property or
+        // the capability to do something (Animals can't count)
         static int numOfAnimals = 0;
 
+        // A static method cannot access non-static class members
         public static int getNumOfAnimals()
         {
             return numOfAnimals;
         }
 
+        // Declare a method
         public string toString()
         {
-            return String.Format("{0} is {1} inches tall, weight {2} lbs and likes to say {3}",name,height,weight,sound);
+            return String.Format("{0} is {1} inches tall, weighs {2} lbs and likes to say {3}", name, height, weight, sound);
+        }
 
+        // Overloading methods works if you have methods with different attribute data types
+        // You can give attributes default values
+        public int getSum(int num1 = 1, int num2 = 1)
+        {
+            return num1 + num2;
+        }
+
+        public double getSum(double num1, double num2)
+        {
+            return num1 + num2;
         }
 
         static void Main(string[] args)
         {
+            // Create an Animal object and call the constructor
             Animal spot = new Animal(15, 10, "Spot", "Woof");
 
-            Console.WriteLine("{0} say {1}", spot name, spot sound);
+            // Get object values with the dot operator
+            Console.WriteLine("{0} says {1}", spot.name, spot.sound);
 
-            Console.WriteLine("Number of Animals" + Animal.getNumOfAnimals());
+            // Calling a static method
+            Console.WriteLine("Number of Animals " + Animal.getNumOfAnimals());
 
+            // Calling an object method
             Console.WriteLine(spot.toString());
 
+            Console.WriteLine("3 + 4 = " + spot.getSum(3, 4));
 
+            // You can assign attributes by name
+            Console.WriteLine("3.4 + 4.5 = " + spot.getSum(num2: 3.4, num1: 4.5));
 
-        }
-    }
-}
- 
-            Animal bulldog = new Animal(13, 50, "Spot", "Woof");
-
-Console.WriteLine("{0} says {1}", bulldog.name, bulldog.sound);
- 
-            // Console.WriteLine("No. of Animals " + Animal.getNumOfAnimals());
- 
-            // ---------- ENUMS ----------
- 
-            Temperature micTemp = Temperature.Low;
-Console.Write("What Temp : ");
- 
-            Console.ReadLine();
- 
-            switch (micTemp)
+            // You can create objects with an object initializer
+            Animal grover = new Animal
             {
-                case Temperature.Freeze:
-                    Console.WriteLine("Temp on Freezing");
-                    break;
- 
-                case Temperature.Low:
-                    Console.WriteLine("Temp on Low");
-                    break;
- 
-                case Temperature.Warm:
-                    Console.WriteLine("Temp on Warm");
-                    break;
- 
-                case Temperature.Boil:
-                    Console.WriteLine("Temp on Boil");
-                    break;
-            }
- 
-            // ---------- STRUCTS ----------
-            Customers bob = new Customers();
-
-bob.createCust("Bob", 15.50, 12345);
- 
-            bob.showCust();
- 
-            // ---------- ANONYMOUS METHODS ----------
-            // An anonymous method has no name and its return type is defined by the return used in the method
- 
-            GetSum sum = delegate (double num1, double num2) {
-                return num1 + num2;
+                name = "Grover",
+                height = 16,
+                weight = 18,
+                sound = "Grrr"
             };
 
-Console.WriteLine("5 + 10 = " + sum(5, 10));
- 
-            // ---------- LAMBDA EXPRESSIONS ----------
-            // A lambda expression is used to act as an anonymous function or expression tree
- 
-            // You can assign the lambda expression to a function instance
-            Func<int, int, int> getSum = (x, y) => x + y;
-Console.WriteLine("5 + 3 = " + getSum.Invoke(5, 3));
- 
-            // Get odd numbers from a list
-            List<int> numList = new List<int> { 5, 10, 15, 20, 25 };
+            Console.WriteLine(grover.toString());
 
-// With an Expression Lambda the input goes in the left (n) and the statements go on the right
-List<int> oddNums = numList.Where(n => n % 2 == 1).ToList();
- 
-            foreach (int num in oddNums) {
-                Console.Write(num + ", ");
-            }
- 
-            // ---------- FILE I/O ----------
-            // The StreamReader and StreamWriter allows you to create text files while reading and
-            // writing to them
- 
-            string[] custs = new string[] { "Tom", "Paul", "Greg" };
- 
-            using (StreamWriter sw = new StreamWriter("custs.txt"))
-            {
-                foreach(string cust in custs)
-                {
-                    sw.WriteLine(cust);
-                }
-            }
- 
-            string custName = "";
-            using (StreamReader sr = new StreamReader("custs.txt"))
-            {
-                while ((custName = sr.ReadLine()) != null)
-                {
-                    Console.WriteLine(custName);
-                }
-            }
- 
-            Console.Write("Hit Enter to Exit");
-            string exitApp = Console.ReadLine();
- 
-        }
-    }
-}
+            // Create a subclass Dog object (it will inherit all of the attributes & properties of the parent (Animal)
+            // Base = the super class.
+            Dog spike = new Dog();
+
+            Console.WriteLine(spike.toString());
+
+            spike = new Dog(20, 15, "Spike", "Grrr Woof", "Chicken");
+
+            Console.WriteLine(spike.toString());
+
+            // One way to implement polymorphism is through an abstract class
+            Shape rect = new Rectangle(5, 5);
+            Shape tri = new Triangle(5, 5);
+            Console.WriteLine("Rect Area " + rect.area());
+            Console.WriteLine("Tri Area " + tri.area());
+
+            // Using the overloaded + on 2 Rectangles
+            Rectangle combRect = new Rectangle(5, 5) + new Rectangle(5, 5);
+
+            Console.WriteLine("combRect Area = " + combRect.area());
