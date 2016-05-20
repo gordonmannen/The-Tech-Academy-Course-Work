@@ -54,7 +54,8 @@ public async Task<string> ReturnGreeting()
 {
     await Task.Delay(1000); // sleeps the thread for x milliseconds
     return "Hello";
-}
+}
+
 
 // async void example:
 public async void SayGreeting()
@@ -136,8 +137,11 @@ public class UserSearch
 // See above example:  awaiting Task.FromResult releases the UI thread and the rest of the code runs asynchronously.
 
 // Fulfilling the Async Contract
-<<<<<<<<<<<<LEFT OFF HERE, just above code listing 116, pg 94>>>>>>>>>>>>>
 
+// Whenever you call an async method in the FCL, that code will release the calling thread and continue on a new thread, which is proper
+// behavior of the async contract that developers expect.  Your code should do the same (see below example).
+
+// Use the Task.ConfigureAwait method, passing false as the parameter.  Below is an example that fixes the problem in GetUserInfoAsync:
 public async Task<UserInfo> GetUserInfoAsync(string term, List<string> names)
 {
     var userName =
@@ -151,4 +155,14 @@ public async Task<UserInfo> GetUserInfoAsync(string term, List<string> names)
     user.Address = await AddressService.GetAddressAsync(userName);
 
     return user;
+
 }
+
+// GetUserInfoAsync method appends ConfigureAwait(false) to the call to GetUserAsync.
+// GetUserAsync returns a Task<string> and ConfigureAwait(false) operates on that return value,
+// releasing the calling thread and running the rest of the method on a new async thread.
+
+// still have to keep issue of synchronous processing in mind and attempt to write the code in
+// such a way that additional code and processes are not occurring until after the first await.
+// And call ConfigureAwait(false) at the earliest opportunity, releasing the UI thread and running
+// the remaining algorithm on the new async thread.
