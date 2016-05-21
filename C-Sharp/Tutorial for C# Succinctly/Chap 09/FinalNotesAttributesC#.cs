@@ -10,7 +10,15 @@ public class ShoppingCart
     public void Add(string item) { }
     [Obsolete("Method is obsolete and can no longer be used", error: true)]
     public decimal CalculateTax(decimal[] prices) { return 0; }
-}// Essentially allows the C# compiler to recognize that a certain piece of code is no longer allowed// and will pop up with a message (with a warning or as an error and won't allow compile to complete.// see second paramter above "...., error:  true", the first parameter is a warning, but this second// paramter is what stops the compiler if an error is identified.// Example using attributes for a unit test with MSTest, Microsoft's unit testing software.using System;
+}
+
+// Essentially allows the C# compiler to recognize that a certain piece of code is no longer allowed
+// and will pop up with a message (with a warning or as an error and won't allow compile to complete.
+// see second paramter above "...., error:  true", the first parameter is a warning, but this second
+// paramter is what stops the compiler if an error is identified.
+
+// Example using attributes for a unit test with MSTest, Microsoft's unit testing software.
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestProject1
@@ -58,7 +66,21 @@ public class Program
 
         Console.ReadKey();
     }
-}// With reflection you can call GetMethods, GetProperties, or GetFields to get an array of// MethodInfo, PropertyInfo, or FieldInfo respectively.  And so on...// Workign with Code Dynamically// Dynamic type > purpose:  to allow you to interoperate with dynamic languages.// For example:  IronPython, IronRuby, etc., and it makes reflections easier.// Additionally MS Silverlight or HTML 5 could be used.// The dynamic type lets you assign a value to a dynamic variable and use any typed members// on that variable.// Example using dynamicusing System;
+}
+
+// With reflection you can call GetMethods, GetProperties, or GetFields to get an array of
+// MethodInfo, PropertyInfo, or FieldInfo respectively.  And so on...
+
+// Workign with Code Dynamically
+// Dynamic type > purpose:  to allow you to interoperate with dynamic languages.
+// For example:  IronPython, IronRuby, etc., and it makes reflections easier.
+// Additionally MS Silverlight or HTML 5 could be used.
+
+// The dynamic type lets you assign a value to a dynamic variable and use any typed members
+// on that variable.
+
+// Example using dynamic
+using System;
 using System.Reflection;
 public class Program
 {
