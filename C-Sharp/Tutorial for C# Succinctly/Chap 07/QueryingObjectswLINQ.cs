@@ -58,7 +58,7 @@ public class Program
 }
 
 // LINQ to Objects queries result in a collection of type IEnumberable<T>.
-// A collection of Customer objects in the example above.
+// a collection of Customer objects in the example above
 
 // Query Custom name
 IEnumerable<string> customers2 =
