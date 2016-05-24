@@ -210,7 +210,20 @@ class Program
     }
 }
 
-// The Predicate<T> delegate as defined in the FCL:public delegate bool Predicate<T>(T obj);// The Func<T, TResult> delegate as defined in the FCL:public delegate TResult Func<T, TResult>(T arg);// FCL offers 18 overloads of the Func delegate, allowing between 0 and 16 input parameters & 1 return parameter type.// Expression-Bodied Members// Not necessarily lambdas, expression-bodied members offer some shortened syntax for properties and methods.// Example:using System;
+// The Predicate<T> delegate as defined in the FCL:
+public delegate bool Predicate<T>(T obj);
+
+// The Func<T, TResult> delegate as defined in the FCL:
+public delegate TResult Func<T, TResult>(T arg);
+
+// FCL offers 18 overloads of the Func delegate, allowing between 0 and 16 input parameters & 1 return parameter type.
+
+// Expression-Bodied Members
+
+// Not necessarily lambdas, expression-bodied members offer some shortened syntax for properties and methods.
+
+// Example:
+using System;
 class Program
 {
     public static string Today => DateTime.Now.ToShortDateString();
@@ -220,4 +233,8 @@ class Program
         Log($"{Today} is a good day.");
         Console.ReadKey();
     }
-}
+}
+
+
+
+
