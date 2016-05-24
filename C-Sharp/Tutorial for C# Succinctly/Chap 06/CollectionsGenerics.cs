@@ -16,7 +16,8 @@ public class Company
 {
     public string Name { get; set; }
 }
-public class Program{
+public class Program
+{
     public static void Main()
     {
         List<string> names = new List<string>();
@@ -36,9 +37,15 @@ public class Program{
             Console.WriteLine(cmp.Name);
         Console.ReadKey();
     }
-}// foreach loop is used above, but could also use ForEach method of List, see below:
+}
+
+// foreach loop is used above, but could also use ForEach method of List, see below:
 List<Company> companyList = companies as List<Company>;
-companyList.ForEach(cmp => Console.WriteLine(cmp.Name));// Example using Dictionaryusing System;
+companyList.ForEach(cmp => Console.WriteLine(cmp.Name));
+
+// Example using Dictionary
+
+using System;
 using System.Collections.Generic;
 public class Customer
 {
@@ -78,7 +85,13 @@ class Node<T>  // the <T> indicates that it is a generic Node class.
     {
         Item = item;
     }
-}// To instantiate a Node<T>Node<string> name = new Node<string>(“May”);// it is now strongly typed, it will only hold strings.Using System;
+}
+
+// To instantiate a Node<T>
+Node<string> name = new Node<string>(“May”);
+// it is now strongly typed, it will only hold strings.
+
+Using System;
 using System.Collections;
 using System.Collections.Generic;
 public class LinkedList<T> : IList<T>
@@ -95,7 +108,11 @@ public class LinkedList<T> : IList<T>
         tail = node;
     }
     // Other IList members…
-}// Example of instantiating LinkedList<T>public class Program
+}
+
+
+// Example of instantiating LinkedList<T>
+public class Program
 {
     public static void Main()
     {
