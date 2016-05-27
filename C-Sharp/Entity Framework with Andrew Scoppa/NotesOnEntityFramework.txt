@@ -1,0 +1,68 @@
+Entity Framework video presented by Andrew Scoppa
+
+What is Entity Framework?  (EF)
+
+Enables .NET devs to work with relational data using domain-specific objects (classes).
+Eliminates the need for most of the data-access code devs usuall need to write.
+
+Three options for development
+Model First
+Database First
+Code First
+
+Motivation (object-relational mismatch)
+Database schemas optimized for data storage and consistency
+	normalization minimizes data duplication
+	relations supported by foreign keys & intersection tables
+	lots of plumbing code required to bridge the gap
+
+Motivation (brittleness)
+Application often tightly coupled to database schema
+	changes to database schema wreak havoc on object model
+	writing db-agnostic code can be tricky (time consuming & error prone)
+
+Solution (Entity Data Model - EDM)
+EDM provides an abstraction layer between your code and the database schema.
+	defines the domain model (aka conceptual model)
+	composed of entities (collections of classes), associations, sets & containers
+	Entity Sets - the result sets of a query
+
+Solution (mappings)
+EF uses xml mapping files to decouple the EDM from the db schema
+	conceptual schema (CSDL) - models classes and their corresponding relationships - indepedent of the db table design
+	storage schema (SSDL) - the db design model (tables, views, stored procedures, keys, etc.)
+	mapping between CSDL & SSDL (MSL) - info about how the conceptual model is mapped to the storage model.
+Db schema can change without breaking the app
+	simply change the storage and mapping files
+	VS consolidates mappings into a single EDMX file
+
+EF "Big Picture"
+To query the conceptual model we can use LINQ to Entities or Entity SQL (ESQL) (storage independent dialect of SQL)
+
+The EDM Context
+Tools in VS generate a context class derived from DbContext
+Represents the entity container in the conceptual model
+Provides the facilities for tracking changes and managing identities, concurrency, and relationships
+Exposes a SaveChanges method
+
+DbContext class
+Context derives from DbContext
+Properties of type DbSet<T>
+Containers name as described in the model
+
+EntityClient Data Provider
+Extends the ADO.NET provider model
+Implements abstract "Db" base classes
+Enables applications to execute Entity SQL queries and consume the returned read-only data reader
+	A query against an IQueryable data source is represented as an expression tree
+	DbSet<T> Implements IQueryable<T> which can be enumerated
+	By default changes are cached in the context
+
+LINQ to Entities : Create Update Delete
+DbSet<T> exposes Remove and Add operations
+	can explicitly call Remove to delete and Add to create
+	SaveChanges persists changes (including updates)
+
+Entity States & SaveChanges
+
+
