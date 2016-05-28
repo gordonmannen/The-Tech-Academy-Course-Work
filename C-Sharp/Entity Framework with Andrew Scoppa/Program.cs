@@ -82,3 +82,80 @@ if (productsToDelete.Any())
     }
     NWEntities.SaveChanges();
 }
+
+using (NorthwindEntities ctx = new NorthwindEntities()){
+    Product p = ctx.Products.Find(1); // bring entity into context
+        // EntityState set to Unchanged
+
+    ++p.UnitPrice; // modify entity
+        // EntityState set to Modified
+
+    ctx.SaveChanges(); // save changes to database
+        // EntityState set to Unchanged
+}
+
+{
+    static void Main(string[] args)
+    {
+        using (NorthwindEntities ctx = new NorthwindEntities())
+        {
+            Console.WriteLine("\nGet product...");
+            Console.ReadLine();
+            // retrieve chai (product id 1)
+            Product chai = ctx.Products.Find(1);
+
+            Console.ReadLine();
+            // increase price
+            ++chai.UnitPrice;
+            Display(ctx, chai);
+
+            Console.WriteLine("\nCreate new product...");
+            Console.ReadLine();
+            // create a new product entity
+            Product kahlua = new Product() { ProductName = "Kahula Coffee", UnitPrice };
+            Display(ctx, kahlua);
+            Console.WriteLine("\nAdd new product to context...");
+            Console.ReadLine();
+            // add the entity to the context
+            ctx.Products.Add(kahlua);
+            Display(ctx, kahlua);
+
+            Console.WriteLine("\nSave changes...");
+            Console.ReadLine();
+            // persist and read context
+            ctx.SaveChanges();
+            Display(ctx, chai);
+            Display(ctx, kahlua);
+
+            Console.WriteLine("\nDelete kahlua...");
+            Console.ReadLine();
+            // remove from context
+            ctx.Products.Remove(kahlua);
+            Display(ctx, kahlua);
+
+            Console.WriteLine("\nSave changes...");
+            Console.ReadLine();
+            ctx.SaveChanges();
+            Display(ctx, kahlua);
+
+            Console.WriteLine("Finished");
+            Console.ReadLine();            
+            
+        }
+
+}
+
+
+string commandText = "Select * from Categories";
+DbSqlQuery<Category> result =
+ctx.Categories.SqlQuery(commandText);
+
+int rowsAffected = ctx.Database.ExecuteSqlCommand
+    ("UPDATE Products SET UnitPrice = UnitPrice - 1 " +
+    "WHERE CategoryID = (0)", category.CategoryID);
+
+// use parameters to prevent SQL injection   
+    
+    
+    
+    }

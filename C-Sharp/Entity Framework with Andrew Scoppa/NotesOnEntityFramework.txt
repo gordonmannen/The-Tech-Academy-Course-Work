@@ -64,5 +64,34 @@ DbSet<T> exposes Remove and Add operations
 	SaveChanges persists changes (including updates)
 
 Entity States & SaveChanges
+Entity Framework takes care of tracking the state of entities
+An entity can be in one of 5 states as defined by the EnityState enumeration;
+	Added; Unchanged; Modified; Deleted; Detached
+	OriginalValues and CurrentValues are maintained (tracked behind the scenes)
+	SaveChanges does different things for entities in different states
+
+Store queries & commands
+Directly execute store queries and commands
+SqlQuery accepts native SQL and returns entities
+ExecuteSqlCommand can be used to perform bulk updates
+	Executed with a transition by default(EF6+)
+	Wraps the command in a transaction if one is not already present
+	OK to enclose the call in a using block with a TransactionScope object
+
+EF 6 async Support
+An async method provides a convenient way to do potentially long-running work without blocking the caller's thread
+	The caller of an async method can resume its work without waiting for the async method to finish
+DbContext implements async operations using SaveChangesAsync or ExecuteSqlCommandAsync methods
+DbSet implements numerous async operations as extension methods
+
+Summary
+Entity Data Model abstracts away the database
+	model data more realistically
+	helps protect your app from db schema changes
+Entity Framework supports different approaches
+	Entity SQL and data readers
+	Entity SQL with object queries
+	LINQ to Entities
+
 
 
