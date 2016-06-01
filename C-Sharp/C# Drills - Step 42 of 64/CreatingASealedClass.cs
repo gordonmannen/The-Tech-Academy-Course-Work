@@ -1,38 +1,18 @@
 ﻿using System;
 
 
-// Access Modifiers:  public, protected, internal, private, & protected internal.
+// A sealed class cannot be derived from, it is used in some instances
+// where it can be used to optimize method invocations and therefore improve
+// performance.
+// So a sealed class cannot be used as a base class as derivation is prevented.
 
-class Program
+class A
 {
-    static void Main()
-    {
-        // Adding internal keyword limits access, it does not allow access from external programs 
-        //(it 'hides' the internal 'type' from external programs)
-        // Internal can be accessed fine from within the same assembly, but is not accessible from
-        // a different assembly.
-        TestI testI = new TestI();
-        testI._x = 1;
-
-        TestPI testPI = new TestPI();
-        testPI._y = 1;
-    }
-}
-
-// Internal type example
-
-internal class TestI
-{
-    public int _x;
+    public void Display()
 }
 
 
-// Protected Internal type example
-
-// If access is being attempted from a different assembly by a class that has NOT inherited the originating assembly class - NO
-// If access is being attempted from a different assembly by a class that HAS inherited the originating assembly class - YES
-
-protected internal class TestPI
+class A : sealed class B
 {
-    public int _y;
+    // The sealed class B can derive from class A, but it would not work the other way around, because of the 'sealed' keyword.
 }
