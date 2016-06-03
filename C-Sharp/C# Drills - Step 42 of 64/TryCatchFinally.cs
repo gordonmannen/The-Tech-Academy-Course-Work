@@ -1,10 +1,11 @@
 ﻿using System;
-namespace ErrorHandlingApplication
+
+namespace TryCatchFinally
 {
-    class DivNumbers
+    class TCFExample
     {
         int result;
-        DivNumbers()
+        TCFExample()
         {
             result = 0;
         }
@@ -20,12 +21,12 @@ namespace ErrorHandlingApplication
             }
             finally
             {
-            .WriteLine("Result: {0}", result);
+                .WriteLine("Result: {0}", result);
             }
         }
         static void Main(string[] args)
         {
-            DivNumbers d = new DivNumbers();
+            TCFExample d = new TCFExample();
             d.division(25, 0);
             Console.ReadKey();
         }
