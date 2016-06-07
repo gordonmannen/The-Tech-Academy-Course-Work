@@ -3,27 +3,27 @@
 // To accommodate times when you would want a value type to be able
 // to hold null, Microsoft added the concept of Nullable type to the CLR.
 
-struct B
+struct X
 {
     public void Display()
     {
-        Console.WriteLine("Displaying from String B.");
+        Console.WriteLine("Displaying from Struct X.");
     }
 }
 
 static void Main(string[] args)
 {
-    // SO to use null with string we need to create a nullabe type if B
+    // To use null with string create a nullabe type if X
 
-    Nullable<B> b2 = null;
+    Nullable<X> x1 = null;
 
-    if (b2 == null)
+    if (x1 == null)
     {
-        b2 = new B();
-        //use 'b' here
-        b2.Value.Display();
+        x1 = new X();
+        //use 'x' here
+        x1.Value.Display();
 
-        // Now with struct it is also possible to assign null since it is nullable
-        b2 = null;
+        // With struct can assign null since it is nullable
+        x1 = null;
     }
 }
