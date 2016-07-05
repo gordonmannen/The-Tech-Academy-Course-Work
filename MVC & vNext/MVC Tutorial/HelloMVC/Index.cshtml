@@ -2,13 +2,107 @@
 @model List<HelloMVC.Models.Car>
 @{
     ViewBag.Title = "Index";
+    var value = 1000;
+    // Example inline expression
 }
 
 <h1>@ViewBag.GordonCreatedThisValue</h1>
 <h2>Gordon Changed This.</h2>
 <p>Hello again!</p>
 
+@{
+    value += 1;
+    // Example inline expression
+}
+
+@{
+    var name = "Gordon";
+    var day = DateTime.Now.DayOfWeek.ToString();
+    // Example mixed expression
+
+    <p>Howdy, @name.  Today is @day.</p>
+    <p>Howdy, @name.  Aren't @(day)s the best?</p>
+}
+
+@{
+    var productId = 123;
+    <p>Product ID:  ACME@(productId)</p>
+    // the parentheses around productId are needed to make this an explicit expression so Razor
+    // knows that this isn't an email address.
+}
+
+<p>Value: @value.ToString("C")</p>
+
 @foreach (var car in Model)
 {
     <p>@car.Id - @car.Make - @car.Model</p>
 }
+
+@helper pluralizeChildren(int childCount)
+{
+    @(childCount == 1 ? "child" : "children");
+}
+
+@{
+    var childCount = 2;
+    <p>I have @childCount @pluralizeChildren(@childCount).</p>
+}
+
+@helper pluralize(int amount, string singular, string plural)
+{
+    @(amount == 1 ? singular : plural);
+}
+
+@{
+    var crisesCount = 2;
+    <p>Mr. President, there @pluralize(crisesCount, "is one crisis", "are " + crisesCount + " crises") you must deal with immediately.</p>
+}
+
+@* This is a comment using Razor syntax *@
+
+@*
+
+    Or in this case can comment out
+
+    a whole section using this syntax.
+
+*@
+
+<p>
+    Mr. President, there
+    @if (crisesCount == 1)
+    {
+        <span>is one crisis</span>
+    }
+    else
+    {
+    <span>are @crisesCount crises</span>
+    }
+    you must deal with immediately!
+</p>
+
+<p>
+    @{
+        var test = false;
+        if (!test)
+        {
+            <p>Display This</p>
+            // Or could do @:Display This - which is a special version of the Razor syntax
+        }
+    }
+</p>
+
+@for (int i = 0; i < 10; i++)
+{
+    <p>@i</p>
+}
+
+<p>bob@learnvisualstudio.net</p>
+<p>@@gordonmannen</p>
+
+@* Razor recognizes when the @ symbol is being used for a website
+    if instead you wanted to use it for say a twitter handle you would
+    need to use two @@.  Also can use a single @ symbol to be able to use
+    a word that would otherwise be reserved in C#, such as class would be
+    @class - see layout file.
+*@
