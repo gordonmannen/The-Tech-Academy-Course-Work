@@ -49,7 +49,8 @@ namespace ACME.Controllers
         //public ActionResult Create([Bind(Include = "ProductId,Name,Price")] Product product)
         public ActionResult Create(string Name, decimal Price)
         {
-            /*if (ModelState.IsValid)
+            /*
+             * if (ModelState.IsValid)
             {
                 product.ProductId = Guid.NewGuid();
                 db.Products.Add(product);
